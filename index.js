@@ -343,26 +343,26 @@ promiseNext
 ///////////////third task refactored to prlomise
 
 
-const fetchUserFromServer = username => {
-  return new Promise((resolve, reject) => {
-    console.log(`Fetching data for ${username}`);
+// const fetchUserFromServer = username => {
+//   return new Promise((resolve, reject) => {
+//     console.log(`Fetching data for ${username}`);
 
-    setTimeout(() => {
-      // Change value of isSuccess variable to simulate request status
-      const isSuccess = false;
+//     setTimeout(() => {
+//       // Change value of isSuccess variable to simulate request status
+//       const isSuccess = false;
 
-      if (isSuccess) {
-        resolve("success value");
-      } else {
-        reject("error");
-      }
-    }, 2000);
-  });
-};
+//       if (isSuccess) {
+//         resolve("success value");
+//       } else {
+//         reject("error");
+//       }
+//     }, 2000);
+//   });
+// };
 
-fetchUserFromServer("Mango")
-  .then(user => console.log(user))
-  .catch(error => console.error(error));
+// fetchUserFromServer("Mango")
+//   .then(user => console.log(user))
+//   .catch(error => console.error(error));
 
 
 
@@ -382,3 +382,45 @@ const promiseB = makePromise("promiseB value", 3000);
 Promise.all([promiseA, promiseB])
   .then(value => console.log(value)) //["promiseA value", "promiseB value"]
   .catch(error => console.log(error));
+
+
+  /////////////////////////////Promise.race()////////////////////
+
+
+  const makePromise1 = (text, delay) => {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(text), delay);
+  });
+};
+
+const promiseA1 = makePromise1("promiseA1 value", 4000);
+const promiseB1 = makePromise1("promiseB1 value", 3000);
+
+Promise.race([promiseA1, promiseB1])
+  .then(value => console.log(value)) // "promiseA value"
+  .catch(error => console.log(error));
+
+
+
+  //////////////////////////Promise.resolve() и Promise.reject()//////////
+
+
+
+
+
+
+
+
+
+const makeGreeting = guestName => {
+  if (guestName === "" || guestName === undefined) {
+    return Promise.reject("Guest name must not be empty");
+  }
+
+  Promise.resolve(`Welcome ${guestName}`)
+};
+
+makeGreeting("kmk")
+
+  .then(greeting => console.log(greeting))
+  .catch(error => console.error(error));
