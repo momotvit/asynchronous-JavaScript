@@ -288,19 +288,97 @@ const promiseNext = new Promise((resolve, reject) => {
 
 promiseNext
   .then(value => {
-    console.log(value); // 5
+    // console.log(value); // 5
     return value * 2;
   })
   .then(value => {
-    console.log(value); // 10
+    // console.log(value); // 10
     return value * 3;
   })
   .then(value => {
-    console.log(value); // 30
+    // console.log(value); // 30
   })
   .catch(error => {
-    console.log(error);
+    // console.log(error);
   })
   .finally(() => {
-    console.log("Final task");
+    // console.log("Final task");
   });
+
+
+
+
+  //////////////////////////// third task //////////////////////////
+
+
+
+//   const fetchUserFromServer = (username, onSuccess, onError) => {
+//   console.log(`Fetching data for ${username}`);
+
+//   setTimeout(() => {
+//     // Change value of isSuccess variable to simulate request status
+//     const isSuccess = true;
+//       //  const isSuccess = false;
+
+//     if (isSuccess) {
+//       onSuccess("success value");
+//     } else {
+//       onError("error");
+//     }
+//   }, 2000);
+// };
+
+// const onFetchSuccess = user => {
+//   console.log(user);
+// };
+
+// const onFetchError = error => {
+//   console.error(error);
+// };
+
+// fetchUserFromServer("Mango", onFetchSuccess, onFetchError);
+
+
+
+///////////////third task refactored to prlomise
+
+
+const fetchUserFromServer = username => {
+  return new Promise((resolve, reject) => {
+    console.log(`Fetching data for ${username}`);
+
+    setTimeout(() => {
+      // Change value of isSuccess variable to simulate request status
+      const isSuccess = false;
+
+      if (isSuccess) {
+        resolve("success value");
+      } else {
+        reject("error");
+      }
+    }, 2000);
+  });
+};
+
+fetchUserFromServer("Mango")
+  .then(user => console.log(user))
+  .catch(error => console.error(error));
+
+
+
+  ///////////////Promise.all()////////////////////
+
+
+
+  const makePromise = (text, delay) => {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(text), delay);
+  });
+};
+
+const promiseA = makePromise("promiseA value", 1000);
+const promiseB = makePromise("promiseB value", 3000);
+
+Promise.all([promiseA, promiseB])
+  .then(value => console.log(value)) //["promiseA value", "promiseB value"]
+  .catch(error => console.log(error));
