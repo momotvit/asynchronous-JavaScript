@@ -411,17 +411,33 @@ promiseNext
 
 
 
-const promise = new Promise((resolve, reject) => {
-  const canFulfill = Math.random() > 0.5;
-  setTimeout(() => {
-    if (canFulfill) {
-      resolve(`fullfilled promise 0000`);
+// const promise = new Promise((resolve, reject) => {
+//   const canFulfill = Math.random() > 0.5;
+//   setTimeout(() => {
+//     if (canFulfill) {
+//       resolve(`fullfilled promise 0000`);
     
-    }
-    reject(`notfulfilled promise`);
+//     }
+//     reject(`notfulfilled promise`);
 
-  }, 2000);
-});
+//   }, 2000);
+// });
  
-promise.then(result => { console.log(result); },
-  error => { console.log(error); },)
+// promise.then(result => { console.log(result); },
+//   error => { console.log(error); },)
+
+
+////////////////// need return a promise, otherwise it will return undifined promise
+
+const makeGreeting = guestName => {
+  if (guestName === "" || guestName === undefined)  {
+    return Promise.reject("Guest name must not be empty");
+  }
+
+  return Promise.resolve(`Welcome ${guestName}`);
+  
+};
+
+makeGreeting("Vitaliy")
+  .then(greeting => console.log(greeting))
+  .catch(error => console.error(error));
