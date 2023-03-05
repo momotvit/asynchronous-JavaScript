@@ -370,35 +370,35 @@ promiseNext
 
 
 
-  const makePromise = (text, delay) => {
-  return new Promise(resolve => {
-    setTimeout(() => resolve(text), delay);
-  });
-};
+//   const makePromise = (text, delay) => {
+//   return new Promise(resolve => {
+//     setTimeout(() => resolve(text), delay);
+//   });
+// };
 
-const promiseA = makePromise("promiseA value", 1000);
-const promiseB = makePromise("promiseB value", 3000);
+// const promiseA = makePromise("promiseA value", 1000);
+// const promiseB = makePromise("promiseB value", 3000);
 
-Promise.all([promiseA, promiseB])
-  .then(value => console.log(value)) //["promiseA value", "promiseB value"]
-  .catch(error => console.log(error));
+// Promise.all([promiseA, promiseB])
+//   .then(value => console.log(value)) //["promiseA value", "promiseB value"]
+//   .catch(error => console.log(error));
 
 
   /////////////////////////////Promise.race()////////////////////
 
 
-  const makePromise1 = (text, delay) => {
-  return new Promise(resolve => {
-    setTimeout(() => resolve(text), delay);
-  });
-};
+//   const makePromise1 = (text, delay) => {
+//   return new Promise(resolve => {
+//     setTimeout(() => resolve(text), delay);
+//   });
+// };
 
-const promiseA1 = makePromise1("promiseA1 value", 4000);
-const promiseB1 = makePromise1("promiseB1 value", 3000);
+// const promiseA1 = makePromise1("promiseA1 value", 4000);
+// const promiseB1 = makePromise1("promiseB1 value", 3000);
 
-Promise.race([promiseA1, promiseB1])
-  .then(value => console.log(value)) // "promiseA value"
-  .catch(error => console.log(error));
+// Promise.race([promiseA1, promiseB1])
+//   .then(value => console.log(value)) // "promiseA value"
+//   .catch(error => console.log(error));
 
 
 
@@ -411,16 +411,17 @@ Promise.race([promiseA1, promiseB1])
 
 
 
+const promise = new Promise((resolve, reject) => {
+  const canFulfill = Math.random() > 0.5;
+  setTimeout(() => {
+    if (canFulfill) {
+      resolve(`fullfilled promise 0000`);
+    
+    }
+    reject(`notfulfilled promise`);
 
-const makeGreeting = guestName => {
-  if (guestName === "" || guestName === undefined) {
-    return Promise.reject("Guest name must not be empty");
-  }
-
-  Promise.resolve(`Welcome ${guestName}`)
-};
-
-makeGreeting("kmk")
-
-  .then(greeting => console.log(greeting))
-  .catch(error => console.error(error));
+  }, 2000);
+});
+ 
+promise.then(result => { console.log(result); },
+  error => { console.log(error); },)
