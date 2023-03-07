@@ -5,13 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-      body {
+      /* body {
         margin: 16px;
         text-align: center;
       }
 
       .btn__wraper {
         margin-top: 50px;
+      } */
+
+      body {
+        margin: 16px;
+        line-height: 1.5;
+        color: #212121;
+        font-family: sans-serif;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .user-list {
+        margin: 0;
+        list-style: none;
+        padding: 24px;
+      }
+
+      .user-list li:not(:last-child) {
+        margin-bottom: 16px;
       }
     </style>
     <title>Document</title>
@@ -19,12 +40,15 @@
   <body>
     <h1>Asynchronous JavaScript =)</h1>
 
-    <button type="button" class="btn">Click me</button>
+    <!-- <button type="button" class="btn">Click me</button>
 
     <div class="btn__wraper">
       <button class="btn js-start">Start</button>
       <button class="btn js-stop">Stop</button>
-    </div>
+    </div> -->
+
+    <button type="button" class="btn">Fetch users</button>
+    <ul class="user-list"></ul>
     <script src="/index.js" type="module"></script>
   </body>
 </html>
