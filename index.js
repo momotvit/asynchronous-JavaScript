@@ -265,7 +265,7 @@ fetchUsersBtn.addEventListener("click", () => {
 });
 
 function fetchUsers() {
-  ///////////////////////////////////getting 7 users in alphabetical order
+  ///////////////////////////////////,
   return fetch( "https://jsonplaceholder.typicode.com/users?_limit=7&_sort=name"
     
   // return fetch("https://jsonplaceholder.typicode.com/users")
