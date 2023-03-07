@@ -1,9 +1,9 @@
 // const button = document.querySelector("button");
 
-// const onClick = () => {
-//     setTimeout(() => {
-//       console.log("I love async JS!");
-//       alert("I love async JS!");
+const onClick = () => {
+    setTimeout(() => {
+      console.log("I love async JS!");
+      alert("I love async JS!");
       
       
 //   }, 2000);
@@ -11,7 +11,7 @@
 
 // Two seconds after clicking the button, 
 // alert specified inside the setTimeout callback will appear.
-// button.addEventListener("click", onClick);
+button.addEventListener("click", onClick);
 
 
 
@@ -36,7 +36,7 @@
 //  При клике на кнопку «Start» запустим интервал и будем
 //  каждую секунду выводить в консоль строку. Используем
 //  Math.random() чтобы строки были разные. По клику на кнопку
-//  «Stop» вызовем clearInterval() и передадим идентификатор 
+//  «Stop» вызовем clearInterval() и передадим идентификатор
 //  интервала который надо остановить.
 
 
@@ -46,22 +46,22 @@
 // let timerId = null;
 
 
-// startBtn.addEventListener("click", () => {
-//   timerId = setInterval(() => {
-//     console.log(`I love async JS!  ${Math.random()}`);
-//   }, 1000);
-// });
+startBtn.addEventListener("click", () => {
+  timerId = setInterval(() => {
+    console.log(`I love async JS!  ${Math.random()}`);
+  }, 1000);
+});
 
 
-// stopBtn.addEventListener("click", () => {
-//   clearInterval(timerId);
-//   console.log(`Interval with id ${timerId} has stopped!`);
-// });
+stopBtn.addEventListener("click", () => {
+  clearInterval(timerId);
+  console.log(`Interval with id ${timerId} has stopped!`);
+});
 
 
 
 
-///////// class Date
+// ///////// class Date
 
 
 // const date = new Date();
@@ -87,7 +87,7 @@
 // console.log(new Date().getTime());
 
 
-////can set the time as a string
+// ////can set the time as a string
 
 // const teamMeetingDate = new Date("March 16, 2030");
 // console.log(teamMeetingDate);
@@ -107,7 +107,7 @@
 
 
 
-// ////////date getter
+// // ////////date getter
 
 // // const date = new Date();
 // console.log("Date: ", date);
@@ -186,57 +186,26 @@
 ////formatting date format
 
 
-// date.toString();
-// // "Sat Mar 16 2030 14:25:00 GMT+0200 (Eastern European Standard Time)"
+date.toString();
+// "Sat Mar 16 2030 14:25:00 GMT+0200 (Eastern European Standard Time)"
 
-// date.toTimeString();
-// // "14:25:00 GMT+0200 (Eastern European Standard Time)"
+date.toTimeString();
+// "14:25:00 GMT+0200 (Eastern European Standard Time)"
 
-// date.toLocaleTimeString();
-// // "2:25:00 PM"
+date.toLocaleTimeString();
+// "2:25:00 PM"
 
-// date.toUTCString();
-// // "Sat, 16 Mar 2030 12:25:00 GMT"
+date.toUTCString();
+// "Sat, 16 Mar 2030 12:25:00 GMT"
 
-// date.toDateString();
-// // "Sat Mar 16 2030"
+date.toDateString();
+// "Sat Mar 16 2030"
 
-// date.toISOString();
-// // "2030-03-16T12:25:00.000Z"
+date.toISOString();
+// "2030-03-16T12:25:00.000Z"
 
-// date.toLocaleString();
-// // "3/16/2030, 2:25:00 PM"
+date.toLocaleString();
+// "3/16/2030, 2:25:00 PM"
 
-// date.getTime();
-// // 1899894300000
-
-
-
-//   fetch("https://jsonplaceholder.typicode.com/users")
-//   .then(response => response.json())
-//   .then(json => console.log(json))
-//   .catch(error => {error.json(console.error);
-//     // Error handling
-//   });
-
-// fetch("https://jsonplaceholder.typicode.com/users")
-//   .then(response => response.text())
-//   .then(text => console.log(text))
-//   .catch(error => {error.json(console.error);
-//     // Error handling
-//   });
-
-  fetch("https://jsonplaceholder.typicode.com/users")
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(console.log(response.status));
-    }
-    console.log(response);
-    return response.json();
-  })
-  .then(data => {
-    // Data handling
-  })
-  .catch(error => {
-    // Error handling
-  });
+date.getTime();
+// 1899894300000
