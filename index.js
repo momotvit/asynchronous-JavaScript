@@ -364,10 +364,10 @@
 //       if (!response.ok) {
 //         throw new Error(response.status);
 //       }
-//       return response.json();
+//       return response;
 //     }
-//   );
-// }
+//   )
+// };
 
 // function renderPosts(posts) {
 //   const markup = posts
@@ -389,49 +389,49 @@
 
 
 
-// const fetchPostsBtn = document.querySelector(".btn");
-// const userList = document.querySelector(".posts");
+const fetchPostsBtn = document.querySelector(".btn");
+const userList = document.querySelector(".posts");
 
-// fetchPostsBtn.addEventListener("click", () => {
-//   fetchPosts()
-//     .then((posts) => renderPosts(posts))
-//     .catch((error) => console.log(error));
-// });
+fetchPostsBtn.addEventListener("click", () => {
+  fetchPosts()
+    .then((posts) => renderPosts(posts))
+    .catch((error) => console.log(error));
+});
 
-// function fetchPosts() {
-//   const params = new URLSearchParams({
-//     _limit:6,
-//     // Change the group number here
-//     _page: 5
-//   });
-//   return fetch(`https://jsonplaceholder.typicode.com/posts?${params}`).then(
-//     (response) => {
-//       if (!response.ok) {
-//         throw new Error(response.status);
-//       }
-//       return response.json();
-//     }
-//   );
-// }
+function fetchPosts() {
+  const params = new URLSearchParams({
+    _limit:6,
+    // Change the group number here
+    _page: 5
+  });
+  return fetch(`https://jsonplaceholder.typicode.com/posts?${params}`).then(
+    (response) => {
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      return response.json();
+    }
+  );
+}
 
-// function renderPosts(posts) {
-//   const markup = posts
-//     .map(({ id, title, body, userId }) => {
-//       return `<li>
-//           <h2 class="post-title">${title.slice(0, 30)}</h2>
-//           <p><b>Post id</b>: ${id}</p>
-//           <p><b>Author id</b>: ${userId}</p>
-//           <p class="post-body">${body}</p>
-//         </li>`;
-//     })
-//     .join("");
-//   userList.innerHTML = markup;
-// }
-
-
+function renderPosts(posts) {
+  const markup = posts
+    .map(({ id, title, body, userId }) => {
+      return `<li>
+          <h2 class="post-title">${title.slice(0, 30)}</h2>
+          <p><b>Post id</b>: ${id}</p>
+          <p><b>Author id</b>: ${userId}</p>
+          <p class="post-body">${body}</p>
+        </li>`;
+    })
+    .join("");
+  userList.innerHTML = markup;
+}
 
 
-//////////////////////////////////data limits //////////////////////////////////
+
+
+//////////////////////////////////data limits //git 
 
 // const fetchPostsBtn = document.querySelector(".btn");
 // const userList = document.querySelector(".posts");
@@ -552,30 +552,30 @@
 
   
   // Change value of id property to update different post
-const postToUpdate = {
-  id: 1,
-  body: "CRUD is really awesome",
-};
+// const postToUpdate = {
+//   id: 1,
+//   body: "CRUD is really awesome",
+// };
 
-const options = {
-  method: "PATCH",
-  body: JSON.stringify(postToUpdate),
-  headers: {
-    "Content-Type": "application/json; charset=UTF-8",
-  },
-};
+// const options = {
+//   method: "PATCH",
+//   body: JSON.stringify(postToUpdate),
+//   headers: {
+//     "Content-Type": "application/json; charset=UTF-8",
+//   },
+// };
 
-fetch(`https://jsonplaceholder.typicode.com/posts/${postToUpdate.id}`, options)
-  .then(response => response.json())
-  .then(post => console.log(post))
-  .catch(error => console.log("ERROR" + error));
+// fetch(`https://jsonplaceholder.typicode.com/posts/${postToUpdate.id}`, options)
+//   .then(response => response.json())
+//   .then(post => console.log(post))
+//   .catch(error => console.log("ERROR" + error));
 
-  const postId = 4;///////chenge the value
+//   const postId = 4;///////chenge the value
 
-fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
-  .then(response => response.json())
-  .then(post => console.log(post))
-  .catch(error => console.log(error));
+// fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+//   .then(response => response.json())
+//   .then(post => console.log(post))
+//   .catch(error => console.log(error));
 
 
 
@@ -584,10 +584,10 @@ fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
 
 
 
-  const postIdToDelete = 4;
+//   const postIdToDelete = 4;
 
-fetch(`https://jsonplaceholder.typicode.com/posts/${postIdToDelete}`, {
-  method: "DELETE",
-})
-  .then(() => console.log("Post deleted"))
-  .catch(error => console.log("Error:", error));
+// fetch(`https://jsonplaceholder.typicode.com/posts/${postIdToDelete}`, {
+//   method: "DELETE",
+// })
+//   .then(() => console.log("Post deleted"))
+//   .catch(error => console.log("Error:", error));
