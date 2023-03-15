@@ -389,49 +389,49 @@
 
 
 
-const fetchPostsBtn = document.querySelector(".btn");
-const userList = document.querySelector(".posts");
+// const fetchPostsBtn = document.querySelector(".btn");
+// const userList = document.querySelector(".posts");
 
-fetchPostsBtn.addEventListener("click", () => {
-  fetchPosts()
-    .then((posts) => renderPosts(posts))
-    .catch((error) => console.log(error));
-});
+// fetchPostsBtn.addEventListener("click", () => {
+//   fetchPosts()
+//     .then((posts) => renderPosts(posts))
+//     .catch((error) => console.log(error));
+// });
 
-function fetchPosts() {
-  const params = new URLSearchParams({
-    _limit:6,
-    // Change the group number here
-    _page: 5
-  });
-  return fetch(`https://jsonplaceholder.typicode.com/posts?${params}`).then(
-    (response) => {
-      if (!response.ok) {
-        throw new Error(response.status);
-      }
-      return response.json();
-    }
-  );
-}
+// function fetchPosts() {
+//   const params = new URLSearchParams({
+//     _limit:6,
+//     // Change the group number here
+//     _page: 5
+//   });
+//   return fetch(`https://jsonplaceholder.typicode.com/posts?${params}`).then(
+//     (response) => {
+//       if (!response.ok) {
+//         throw new Error(response.status);
+//       }
+//       return response.json();
+//     }
+//   );
+// }
 
-function renderPosts(posts) {
-  const markup = posts
-    .map(({ id, title, body, userId }) => {
-      return `<li>
-          <h2 class="post-title">${title.slice(0, 30)}</h2>
-          <p><b>Post id</b>: ${id}</p>
-          <p><b>Author id</b>: ${userId}</p>
-          <p class="post-body">${body}</p>
-        </li>`;
-    })
-    .join("");
-  userList.innerHTML = markup;
-}
-
-
+// function renderPosts(posts) {
+//   const markup = posts
+//     .map(({ id, title, body, userId }) => {
+//       return `<li>
+//           <h2 class="post-title">${title.slice(0, 30)}</h2>
+//           <p><b>Post id</b>: ${id}</p>
+//           <p><b>Author id</b>: ${userId}</p>
+//           <p class="post-body">${body}</p>
+//         </li>`;
+//     })
+//     .join("");
+//   userList.innerHTML = markup;
+// }
 
 
-//////////////////////////////////data limits //git 
+
+
+//////////////////////////////////data limits //git
 
 // const fetchPostsBtn = document.querySelector(".btn");
 // const userList = document.querySelector(".posts");
@@ -591,3 +591,144 @@ function renderPosts(posts) {
 // })
 //   .then(() => console.log("Post deleted"))
 //   .catch(error => console.log("Error:", error));
+
+
+
+
+/////////////////async await function
+
+
+
+
+// const fetchFriends = async () => {
+//   const token = await fetch("my-api.com/me");
+//   const user = await fetch(`my-api.com/profile?token=${token}`);
+//   const friends = await fetch(`my-api.com/users/${user.id}/friends`);
+//   return friends;
+// };
+
+// fetchFriends()
+//   .then(friends => console.log(friends))
+//   .catch(error => console.error(error));
+
+
+
+///////////////////try .... .catch
+
+
+// const fetchUsers = async () => {
+//   try {
+//     const response = await fetch("https://jsonplaceholder.typicode.com/users");
+//     const users = await response.json();
+//     console.log(users);
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };
+
+// fetchUsers();
+
+
+///////////////using result of async function outside function
+  
+// const fetchUsers = async () => {
+//   const response = await fetch("https://jsonplaceholder.typicode.com/users");
+//   const users = await response.json();
+//   return users;
+// };
+
+// const doStuff = async () => {
+//   try {
+//     const users = await fetchUsers();
+//     console.log(users);
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };
+
+// doStuff();
+
+
+///////////////////independent results
+
+
+// const fetchUsers = async () => {
+//   const baseUrl = "https://jsonplaceholder.typicode.com";
+ 
+//   const secondResponse = await fetch(`${baseUrl}/users/2`);
+//   const thirdResponse = await fetch(`${baseUrl}/users/3`);
+//  const firstResponse = await fetch(`${baseUrl}/users/1`);
+
+
+//   const firstUser = await firstResponse.json();
+//   const secondUser = await secondResponse.json();
+//   const thirdUser = await thirdResponse.json();
+//   console.log(firstUser, secondUser, thirdUser);
+// };
+
+// fetchUsers();
+
+
+
+///////////////////using Promise.all:
+
+
+// const fetchUsers = async () => {
+//   const baseUrl = "https://jsonplaceholder.typicode.com";
+//   const userIds = [1, 2, 3];
+
+//   // 1. Создаём массив промисов
+//   const arrayOfPromises = userIds.map(async userId => {
+//     const response = await fetch(`${baseUrl}/users/${userId}`);
+//     return response.json();
+//   });
+
+//   // 2. Запускаем все промисы параллельно и ждем их завершения
+//   const users = await Promise.all(arrayOfPromises);
+//   console.log(users);
+// };
+
+// fetchUsers();
+
+
+
+
+
+
+const fetchUsersBtn = document.querySelector(".btn");
+const userList = document.querySelector(".user-list");
+
+fetchUsersBtn.addEventListener("click", async () => {
+  try {
+    const users = await fetchUsers();
+    renderUserListItems(users);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+async function fetchUsers() {
+  const baseUrl = "https://jsonplaceholder.typicode.com";
+  const userIds = [1, 2, 3, 4, 5];
+
+  const arrayOfPromises = userIds.map(async (userId) => {
+    const response = await fetch(`${baseUrl}/users/${userId}`);
+    return response.json();
+  });
+
+  const users = await Promise.all(arrayOfPromises);
+  return users;
+}
+
+function renderUserListItems(users) {
+  const markup = users
+    .map(
+      (user) => `<li class="item">
+        <p><b>Name</b>: ${user.name}</p>
+        <p><b>Email</b>: ${user.email}</p>
+        <p><b>Company</b>: ${user.company.name}</p>
+      </li>`
+    )
+    .join("");
+  userList.innerHTML = markup;
+}
