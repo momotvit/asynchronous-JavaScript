@@ -732,3 +732,23 @@ function renderUserListItems(users) {
     .join("");
   userList.innerHTML = markup;
 }
+
+
+
+
+try {
+
+
+  console.log(`before error inside try`)
+someConst;
+  console.log(`after error inside try`)
+
+  
+} catch (error) {
+console.log(`WTF ${error.message}`)  
+}
+
+console.log(`after try-catch`)
+
+
+
